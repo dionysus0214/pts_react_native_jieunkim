@@ -1,23 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  floatingButtonContainer: {
-    position: 'absolute',
-    bottom: 24,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-  },
   floatingButton: {
     minWidth: 52,
     height: 52,
     borderWidth: 1,
-    borderColor: 'rgba(134, 71, 240, 1)',
-    backgroundColor: 'rgba(255, 255, 255, 1)',
+    borderColor: '#8647F0',
+    backgroundColor: '#FFF',
     borderRadius: 50,
     flexDirection: 'row',
     paddingHorizontal: 12,
+    shadowColor: '#00000014',
+    shadowOffset: { width: 2, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 16,
+    elevation: 4,
   },
   buttonContent: {
     flexDirection: 'row',
@@ -29,7 +26,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   floatingButtonText: {
-    color: 'rgba(28, 28, 30, 1)',
+    // color: '#000000',
     fontSize: 14,
     fontWeight: 700,
   },

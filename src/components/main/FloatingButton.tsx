@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, Image, View } from 'react-native';
-import styles from './FloatingButtons.styles';
+import styles from './FloatingButton.styles';
 
 interface FloatingButtonProps {
   title: string;

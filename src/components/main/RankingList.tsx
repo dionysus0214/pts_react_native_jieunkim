@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import RankingItemComponent from './RankingItem';
-import { RankingItem } from '../types/rankingDTO';
+import { RankingItem } from '../../types/rankingDTO';
 
 interface RankingListProps {
   data: RankingItem[];

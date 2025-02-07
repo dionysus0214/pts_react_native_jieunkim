@@ -5,10 +5,10 @@ import { globalStyles } from '../styles/globalStyles';
 import QrCodePopup from './QrCodePopup';
 import { rankingData } from '../data/dummyData';
 import useCurrentTime from '../hooks/useCurrentTime';
-import RankingList from '../components/RankingList';
-import FloatingButtons from '../components/FloatingButtons';
-import BranchRanking from '../components/BranchRanking';
-import MyRanking from '../components/MyRanking';
+import RankingList from '../components/main/RankingList';
+import FloatingButtons from '../components/main/FloatingButtons';
+import BranchRanking from '../components/main/BranchRanking';
+import MyRanking from '../components/main/MyRanking';
 
 import styles from './MainScreen.styles';
 

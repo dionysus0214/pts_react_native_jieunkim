@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import styles from './FloatingButtons.styles';
 import FloatingButton from './FloatingButton';
 
-const qrIcon = require('../../assets/icons/icon_qr.png');
+const qrIcon = require('../../../assets/icons/icon_qr.png');
 
 interface FloatingButtonsProps {
   onQrPress: () => void;

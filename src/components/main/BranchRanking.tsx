@@ -14,7 +14,7 @@ const BranchRanking = ({ currentTime }: BranchRankingProps) => {
         <View style={styles.linkContainer}>
           <Text style={styles.linkText}>전체 랭킹 보기</Text>
           <Image
-            source={require('../../assets/icons/icon_arrow_right.png')}
+            source={require('../../../assets/icons/icon_arrow_right.png')}
             style={styles.arrowIcon}
           />
         </View>
