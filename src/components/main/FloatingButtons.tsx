@@ -7,12 +7,16 @@ const qrIcon = require('../../../assets/icons/icon_qr.png');
 
 interface FloatingButtonsProps {
   onQrPress: () => void;
+  onAndroidPress: () => void;
 }
 
-const FloatingButtons = ({ onQrPress }: FloatingButtonsProps) => {
+const FloatingButtons = ({
+  onQrPress,
+  onAndroidPress,
+}: FloatingButtonsProps) => {
   return (
     <View style={styles.floatingButtonContainer}>
-      <FloatingButton title="AOS" />
+      <FloatingButton title="AOS" onPress={onAndroidPress} />
       <FloatingButton title="입장 QR 코드" onPress={onQrPress} icon={qrIcon} />
       <FloatingButton title="iOS" />
     </View>
