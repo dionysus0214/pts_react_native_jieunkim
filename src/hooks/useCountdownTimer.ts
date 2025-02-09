@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const useCountdownTimer = (initialTime = 180) => {
   const [timeLeft, setTimeLeft] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
 
   useEffect(() => {
-    if (timeLeft <= 0) {
-      setIsExpired(true);
+    if (!isRunning || timeLeft <= 0) {
+      if (timeLeft <= 0) {
+        setIsExpired(true);
+      }
       return;
     }
 
@@ -15,12 +18,13 @@ const useCountdownTimer = (initialTime = 180) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft]);
+  }, [timeLeft, isRunning]);
 
-  const restartTimer = () => {
+  const restartTimer = useCallback(() => {
     setTimeLeft(initialTime);
     setIsExpired(false);
-  };
+    setIsRunning(true);
+  }, [initialTime]);
 
   return { timeLeft, isExpired, restartTimer };
 };

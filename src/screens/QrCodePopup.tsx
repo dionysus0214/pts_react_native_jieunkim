@@ -11,7 +11,10 @@ interface QrCodePopupProps {
 }
 
 const QrCodePopup = ({ visible, onClose }: QrCodePopupProps) => {
-  const { qrData, timeLeft, isExpired, refreshQrCode } = useQrCode(180);
+  const { qrData, timeLeft, isExpired, refreshQrCode } = useQrCode(
+    180,
+    visible,
+  );
 
   return (
     <Modal visible={visible} transparent animationType="fade">
@@ -22,11 +25,13 @@ const QrCodePopup = ({ visible, onClose }: QrCodePopupProps) => {
             <Text style={styles.subText}>
               좌석에 있는 기기에{'\n'}QR코드를 인식시켜주세요!
             </Text>
-            <QrCode
-              qrData={qrData}
-              isExpired={isExpired}
-              onRefresh={refreshQrCode}
-            />
+            {qrData && (
+              <QrCode
+                qrData={qrData}
+                isExpired={isExpired}
+                onRefresh={refreshQrCode}
+              />
+            )}
             <QrCodeTimer timeLeft={timeLeft} isExpired={isExpired} />
           </View>
         </View>

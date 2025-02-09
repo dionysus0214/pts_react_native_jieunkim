@@ -6,16 +6,17 @@ const generateQrData = () => {
   return `김지은_${randomNum}`;
 };
 
-const useQRCode = (initialDuration = 180) => {
-  const [qrData, setQrData] = useState(generateQrData());
+const useQRCode = (initialDuration = 180, isVisible: boolean) => {
+  const [qrData, setQrData] = useState<string | null>(null);
   const { timeLeft, isExpired, restartTimer } =
     useCountdownTimer(initialDuration);
 
   useEffect(() => {
-    if (isExpired) {
+    if (isVisible) {
       setQrData(generateQrData());
+      restartTimer();
     }
-  }, [isExpired]);
+  }, [isVisible, restartTimer]);
 
   const refreshQrCode = () => {
     setQrData(generateQrData());
