@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, NativeModules } from 'react-native';
 
-import { globalStyles } from '../styles/globalStyles';
-import QrCodePopup from './QrCodePopup';
 import { rankingData } from '../data/dummyData';
-import useCurrentTime from '../hooks/useCurrentTime';
+import QrCodePopup from './QrCodePopup';
 import RankingList from '../components/main/RankingList';
 import FloatingButtons from '../components/main/FloatingButtons';
-import BranchRanking from '../components/main/BranchRanking';
-import MyRanking from '../components/main/MyRanking';
 
+import { globalStyles } from '../styles/globalStyles';
 import styles from './MainScreen.styles';
 
 const MainScreen = () => {
-  const currentTime = useCurrentTime();
+  const { AndroidNavigation } = NativeModules;
 
   const [isQrVisible, setIsQrVisible] = useState(false);
 
@@ -21,19 +18,23 @@ const MainScreen = () => {
     (a, b) => b.totalTime - a.totalTime,
   );
 
+  const handleOpenAndroidScreen = () => {
+    AndroidNavigation.openAndroidScreen();
+  };
+
   return (
     <View style={globalStyles.container}>
-      <ScrollView
-        contentContainerStyle={styles.rankingContainer}
-        showsVerticalScrollIndicator={false}>
-        <BranchRanking currentTime={currentTime} />
-        <MyRanking />
+      <View style={styles.rankingContainer}>
         <RankingList data={sortedRankingData} />
-      </ScrollView>
+      </View>
 
       <View style={styles.floatingContainer}>
-        <FloatingButtons onQrPress={() => setIsQrVisible(true)} />
+        <FloatingButtons
+          onQrPress={() => setIsQrVisible(true)}
+          onAndroidPress={handleOpenAndroidScreen}
+        />
       </View>
+
       <QrCodePopup
         visible={isQrVisible}
         onClose={() => setIsQrVisible(false)}

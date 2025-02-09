@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   rankingContainer: {
-    flexGrow: 1,
+    flex: 1,
     paddingBottom: 100,
   },
   floatingContainer: {

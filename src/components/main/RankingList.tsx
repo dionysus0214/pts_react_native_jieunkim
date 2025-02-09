@@ -1,13 +1,19 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import RankingItemComponent from './RankingItem';
+
 import { RankingItem } from '../../types/rankingDTO';
+import useCurrentTime from '../../hooks/useCurrentTime';
+import BranchRanking from './BranchRanking';
+import MyRanking from './MyRanking';
+import RankingItemComponent from './RankingItem';
 
 interface RankingListProps {
   data: RankingItem[];
 }
 
 const RankingList = ({ data }: RankingListProps) => {
+  const currentTime = useCurrentTime();
+
   return (
     <FlatList
       data={data}
@@ -15,7 +21,13 @@ const RankingList = ({ data }: RankingListProps) => {
       renderItem={({ item, index }) => (
         <RankingItemComponent item={item} index={index} />
       )}
-      nestedScrollEnabled={true}
+      ListHeaderComponent={
+        <>
+          <BranchRanking currentTime={currentTime} />
+          <MyRanking />
+        </>
+      }
+      showsVerticalScrollIndicator={false}
     />
   );
 };
