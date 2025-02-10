@@ -1,97 +1,97 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native 프로젝트: pts_react_native_jieunkim
 
-# Getting Started
+본 프로젝트는 React Native로 개발한 모바일 애플리케이션입니다. 과제 요구사항에 따라 기능을 구현했으며 Android 및 iOS에서 실행할 수 있습니다.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 1. 기술 스택
 
-## Step 1: Start Metro
+- React Native(0.77.0)
+- TypeScript
+- react-navigation/native(네비게이션 관리)
+- react-navigation/stack(스택 네비게이션)
+- react-native-gesture-handler(제스처 처리, 네비게이션 종속성)
+- react-native-reanimated(애니메이션 적용, 네비게이션 종속성)
+- react-native-svg(SVG 렌더링)
+- react-native-qrcode-svg(QR 코드 생성)
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 2. 프로젝트 실행 방법
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### 2.1 프로젝트 클론 및 패키지 설치
 
 ```sh
-# Using npm
-npm start
+git clone https://github.com/dionysus0214/pts_react_native_jieunkim.git
+cd pts_react_native_jieunkim
 
-# OR using Yarn
-yarn start
+# npm 사용 시
+npm install
+
+# 본 프로젝트는 npm을 기준으로 설명됩니다. yarn을 사용하는 경우 `yarn install`을 실행하세요.
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
+### 2.2 iOS 빌드 설정(Mac 사용자의 경우)
 
 ```sh
-# Using npm
+cd ios
+bundle install
+bundle exec pod install
+cd ..
+```
+
+### 2.3 앱 실행
+
+```sh
+# Android(에뮬레이터 또는 실기기 필요)
 npm run android
 
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# iOS(Xcode 필요, Mac 전용)
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 3. 프로젝트 구조
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```
+pts_react_native_jieunkim
+│── assets/             # 이미지, 아이콘, 폰트 등
+│── src/
+│   │── components/     # 재사용 가능한 컴포넌트
+│   │── data/           # JSON 형태 정적 데이터 관리
+│   │── hooks/          # 커스텀 훅
+│   │── screens/        # 화면 컴포넌트
+│   │── styles/         # 전역 스타일 설정
+│   │── types/          # 타입 정의
+│   │── utils/          # 유틸리티 함수
+│── ios/                # iOS 관련 설정
+│── android/            # Android 관련 설정
+│── package.json
+│── App.tsx
+│── README.md
+```
 
-## Step 3: Modify your app
+## 4. 주요 기능 구현 사항
 
-Now that you have successfully run the app, let's make changes!
+### 4.1 메인 페이지
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- 스크롤 영역과 플로팅 영역을 분리하여 스크롤 영역에서만 상/하 스크롤 가능하도록 처리
+- "입장 QR 코드", "AOS", "iOS" 버튼 → 플로팅 버튼 구현
+- 랭킹 리스트 데이터를 정의하고 랭킹 리스트를 정렬하여 표시
+- 앱이 background → foreground 변경 시 현재 시간 업데이트
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### 4.2 QR Code 팝업
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- 팝업 생성 시 QR 코드 생성
+- 3분 타이머 후 비활성화 및 새로고침 기능 추가
+- QR 코드 인식 시 `{지원자 이름}_{랜덤 2자리 숫자}` 형식으로 표시
+- 새로고침 시 새로운 QR 코드 생성
 
-## Congratulations! :tada:
+### 4.3 우대사항(Native Modules)
 
-You've successfully run and modified your React Native App. :partying_face:
+- AOS 버튼 클릭 → Android Native View 전환
+- Native View 내 뒤로 가기 기능 추가
 
-### Now what?
+## 5. 향후 개선 사항
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+- 테스트 코드 추가(Jest, React Native Testing Library)
+- 성능 최적화(Hermes 엔진 활성화, Metro 번들 크기 최적화)
 
-# Troubleshooting
+## 6. 문의
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+과제 관련 문의는 이메일(hiba0214@naver.com)을 통해 가능합니다.
