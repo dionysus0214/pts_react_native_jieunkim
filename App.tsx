@@ -1,8 +1,10 @@
+import { enableScreens } from 'react-native-screens';
+enableScreens();
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './src/screens/MainScreen';
-
 const Stack = createStackNavigator();
 
 function App(): React.JSX.Element {
